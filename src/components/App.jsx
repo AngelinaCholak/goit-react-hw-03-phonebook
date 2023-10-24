@@ -15,6 +15,21 @@ export class App extends Component {
     filter: '',
   };
 
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+    if (savedContacts) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      const stringifiedContacts = JSON.stringify(this.state.contacts);
+      localStorage.setItem('contacts', stringifiedContacts);
+    }
+  }
+
   handleAddContact = contactData => {
     const hasDuplicates = this.state.contacts.some(
       contact => contact.name.toLowerCase() === contactData.name.toLowerCase()
@@ -78,8 +93,3 @@ export class App extends Component {
   }
 }
 
-
-  // componentDidMount() {
-  //   const stringifiedContacts =
-
-  // }
