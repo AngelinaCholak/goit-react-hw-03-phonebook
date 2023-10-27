@@ -22,7 +22,9 @@ export default class PhoneBook extends Component {
 
   render() {
     return (
-      <form className={css.phoneBookForm} onSubmit={this.handleSubmit}>
+      <form
+        className={css.phoneBookForm}
+        onSubmit={this.handleSubmit}>
         <h2 >Name</h2>
         <input
           className={css.phoneBookInput}
